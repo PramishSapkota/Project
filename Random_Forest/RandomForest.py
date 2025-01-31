@@ -2,28 +2,18 @@ from DecisionTree import DecisionTree
 import numpy as np
 from collections import Counter
 from joblib import Parallel, delayed
-from sklearn.decomposition import PCA  # Import PCA
 
 class RandomForest:
-    def __init__(self, n_trees=10, max_depth=10, min_samples_split=2, max_features=None, n_jobs=-1, use_pca=True, n_components=100):
+    def __init__(self, n_trees=10, max_depth=6, min_samples_split=2, max_features=None, n_jobs=-1):
         self.n_trees = n_trees
         self.max_depth = max_depth
         self.min_samples_split = min_samples_split
         self.max_features = max_features
         self.n_jobs = n_jobs
-        self.use_pca = use_pca
-        self.n_components = n_components
         self.trees = []
-        self.pca = None  # Will hold PCA model if used
 
     def fit(self, X, y):
-        X = X.astype(np.float32)  # Reduce memory usage
-
-        # Apply PCA for feature reduction if enabled
-        if self.use_pca:
-            self.pca = PCA(n_components=min(self.n_components, X.shape[1]))
-            X = self.pca.fit_transform(X)
-
+        X = X.astype(np.float16)  # Reduce memory usage
         if self.max_features is None:
             self.max_features = int(np.sqrt(X.shape[1]))
 
@@ -47,11 +37,7 @@ class RandomForest:
         return X[idxs], y[idxs]
 
     def predict(self, X):
-        X = X.astype(np.float32)  # Convert to float32 for memory efficiency
-
-        if self.use_pca:
-            X = self.pca.transform(X)  # Apply PCA to test data
-
+        X = X.astype(np.float32)  # Reduce memory usage
         predictions = np.array(
             Parallel(n_jobs=min(self.n_jobs, 2))(  # Reduce jobs
                 delayed(tree.predict)(X) for tree in self.trees
