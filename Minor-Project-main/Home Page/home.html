@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Review Detection System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(90deg, #e2e2e2, #c9d6ff);
+        }
+        .navbar {
+            background-color: #7494ec;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        .navbar-brand, .nav-link {
+            color: #fff !important;
+        }
+        .hero-section {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://source.unsplash.com/1600x900/?technology,ai');
+            background-size: cover;
+            color: white;
+            margin-top: 56px;
+        }
+        .feature {
+            padding: 20px;
+            text-align: center;
+        }
+        .feature h3 {
+            color: #7494ec;
+        }
+        .contact-form {
+            max-width: 600px;
+            margin: auto;
+        }
+        .footer {
+            background-color: #7494ec;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .btn-custom {
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Fake Review Detection</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item">
+                        <a href="login.html" class="btn btn-outline-light btn-custom ms-2">Sign In</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <section class="hero-section">
+        <div class="container">
+            <h1>Welcome to the Fake Review Detection System</h1>
+            <p>Identify and eliminate fake product reviews with ease.</p>
+            <a href="#features" class="btn btn-primary btn-lg">Learn More</a>
+        </div>
+    </section>
+
+    <section id="features" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 feature">
+                    <h3>Advanced AI Algorithms</h3>
+                    <p>Leverage machine learning to detect patterns in reviews and identify fake content.</p>
+                </div>
+                <div class="col-md-4 feature">
+                    <h3>Real-Time Analysis</h3>
+                    <p>Analyze reviews in real-time and provide instant feedback for better decision-making.</p>
+                </div>
+                <div class="col-md-4 feature">
+                    <h3>User-Friendly Interface</h3>
+                    <p>Easy to navigate and designed for both casual users and professionals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center">About Our System</h2>
+            <p class="text-center">The Fake Review Detection System is designed to help users identify fraudulent product reviews using advanced machine learning techniques. Our platform analyzes reviews, detects suspicious patterns, and provides users with insights to make informed decisions. By leveraging AI and real-time processing, we aim to enhance transparency and trust in online marketplaces.</p>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="text-center">Contact Us</h2>
+            <form class="mt-4 contact-form">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Fake Review Detection System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
