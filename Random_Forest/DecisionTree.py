@@ -1,5 +1,6 @@
 import numpy as np
 from collections import Counter
+# from scipy.stats import entropy
 
 class Node:
     def __init__(self, feature=None, threshold=None, left=None, right=None, *, value=None):
@@ -75,7 +76,12 @@ class DecisionTree:
     def _entropy(self, y):
         hist = np.bincount(y)
         ps = np.divide(hist, len(y), dtype=np.float32)
-        return -np.sum(ps * np.log2(ps + 1e-9))  # Avoid log(0)
+        return -np.sum(ps * np.log2(ps, where=(ps > 0)))  # Faster entropy calculation
+    
+    # def _entropy(self, y):
+    #     hist = np.bincount(y)
+    #     ps = hist / hist.sum()
+    #     return entropy(ps, base=2)  # Faster than np.log2()
     
     def _most_common_label(self, y):
         return np.bincount(y).argmax()

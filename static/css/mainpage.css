@@ -1,0 +1,155 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(90deg, #e2e2e2, #c9d6ff);
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #7494ec;
+  color: white;
+  padding: 15px 20px;
+}
+
+.navbar h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nepali-review {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.2s;
+}
+
+.nepali-review:hover {
+  color: #ffcc00;
+}
+
+/* Logout Button */
+.logout-btn {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: #ff1a1a;
+  transform: scale(1.05);
+}
+
+/* Welcome User Styling */
+.welcome-message {
+  font-size: 50px;
+  color: white;
+  font-weight: 600;
+  animation: fadeIn 2s ease-in-out;
+  margin-bottom: 20px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Container Styles */
+.container {
+  padding: 20px;
+  text-align: center;
+}
+
+/* Input Container Styling */
+.rating-container,
+.review-container {
+  margin-bottom: 20px;
+}
+
+.rating-label {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Number input for rating styling */
+#rating {
+  width: 60%;
+  max-width: 300px;
+  padding: 12px;
+  font-size: 18px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.text-input {
+  width: 80%;
+  max-width: 600px;
+  padding: 15px;
+  font-size: 18px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Submit Button Styling */
+.submit-btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#submit-comment {
+  padding: 12px 25px;
+  background-color: #7494ec;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+#submit-comment:hover {
+  background-color: #3b6cc7;
+}
+
+.prediction-result {
+  background-color: #f8f9fa; 
+  border-left: 5px solid #007bff; 
+  padding: 10px;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  line-height: 1.5;
+  white-space: pre-line; 
+}

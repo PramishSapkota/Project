@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rating Page</title>
+    <link rel="stylesheet" href="../static/css/mainpage.css" />
+  </head>
+  <body>
+    <div class="main">
+      <div class="navbar">
+        <h2>My Page</h2>
+        <div class="nav-right">
+          <a href="./nepaliReview" class="nepali-review">Nepali Review</a>
+          <button id="logout" class="logout-btn">
+            <a href="{{ url_for('logout') }}" style="color: white; text-decoration: none;">Logout</a>
+          </button>
+        </div>
+      </div>
+      <div class="container">
+        <span class="welcome-message">Welcome, {{ username }}!</span>
+        <h3>Enter Rating and Review</h3>
+        
+        <!-- Form for submitting rating and review -->
+        <form action="{{ url_for('submit_review') }}" method="POST">
+          <!-- Number input for rating between 1 and 5 -->
+          <div class="rating-container">
+            <input type="number" id="rating" name="rating" min="1" max="5" step="1" placeholder="Rate between 1 and 5" required />
+          </div>
+
+          <!-- Text input for review -->
+          <div class="review-container">
+            <input type="text" class="text-input" name="review" placeholder="Write a Review..." required />
+          </div>
+
+          <!-- Submit button -->
+          <div class="submit-btn-container">
+            <button type="submit" id="submit-comment">Submit</button>
+          </div>
+        </form>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="prediction-result">
+            {% for category, message in messages %}
+              <p class="{{ category }}">{{ message | safe }}</p>  
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% endwith %}
+        
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>

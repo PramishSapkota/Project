@@ -4,7 +4,7 @@ from collections import Counter
 from joblib import Parallel, delayed
 
 class RandomForest:
-    def __init__(self, n_trees=10, max_depth=6, min_samples_split=2, max_features=None, n_jobs=-1):
+    def __init__(self, n_trees=50, max_depth=10, min_samples_split=2, max_features=None, n_jobs=-1):
         self.n_trees = n_trees
         self.max_depth = max_depth
         self.min_samples_split = min_samples_split
@@ -13,7 +13,7 @@ class RandomForest:
         self.trees = []
 
     def fit(self, X, y):
-        X = X.astype(np.float16)  # Reduce memory usage
+        X = X.astype(np.float32)  # Reduce memory usage
         if self.max_features is None:
             self.max_features = int(np.sqrt(X.shape[1]))
 
@@ -32,8 +32,10 @@ class RandomForest:
         return tree
 
     def _bootstrap_samples(self, X, y):
-        n_samples = X.shape[0]
-        idxs = np.random.randint(0, n_samples, size=n_samples)
+        """ Bootstrapping: Sample 80% of the data for each tree """
+        n_samples = int(0.85 * X.shape[0])  # 65% bootstrapping often balances bias and variance well.
+        # but it can be changed to 80% or 85% to increase accuracy
+        idxs = np.random.choice(X.shape[0], n_samples, replace=True)
         return X[idxs], y[idxs]
 
     def predict(self, X):
