@@ -48,21 +48,32 @@ class DecisionTree:
         
         for feat_idx in feat_idxs:
             X_column = X[:, feat_idx]
-            thresholds = np.unique(X_column)
-            
+            sorted_indices = np.argsort(X_column)
+            X_sorted = X_column[sorted_indices]
+            y_sorted = y[sorted_indices]
+
+            thresholds = []
+            for i in range(1, len(X_sorted)):
+                if X_sorted[i] != X_sorted[i-1]:
+                    thresholds.append((X_sorted[i] + X_sorted[i-1]) / 2)
+
+            if not thresholds:
+                continue
+
             for thr in thresholds:
-                left_idxs = np.where(X_column <= thr)[0]
-                right_idxs = np.where(X_column > thr)[0]
-                
-                if len(left_idxs) == 0 or len(right_idxs) == 0:
+                split_idx_sorted = np.searchsorted(X_sorted, thr, side='left')
+                left_indices = sorted_indices[:split_idx_sorted]
+                right_indices = sorted_indices[split_idx_sorted:]
+
+                if len(left_indices) == 0 or len(right_indices) == 0:
                     continue
                 
-                gain = self._information_gain(y, left_idxs, right_idxs)
+                gain = self._information_gain(y, left_indices, right_indices)
                 if gain > best_gain:
                     best_gain = gain
                     split_idx = feat_idx
                     split_threshold = thr
-                    best_split = (left_idxs, right_idxs)
+                    best_split = (left_indices, right_indices)
         
         return split_idx, split_threshold, best_split
 
@@ -75,14 +86,13 @@ class DecisionTree:
     
     def _entropy(self, y):
         hist = np.bincount(y)
-        ps = np.divide(hist, len(y), dtype=np.float32)
-        return -np.sum(ps * np.log2(ps, where=(ps > 0)))  # Faster entropy calculation
-    
+        ps = hist / len(y)
+        return -np.sum(ps * np.log2(ps + 1e-10))  # Add small epsilon to avoid log(0)
     # def _entropy(self, y):
     #     hist = np.bincount(y)
     #     ps = hist / hist.sum()
     #     return entropy(ps, base=2)  # Faster than np.log2()
-    
+
     def _most_common_label(self, y):
         return np.bincount(y).argmax()
 

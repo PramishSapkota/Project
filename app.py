@@ -140,8 +140,8 @@ def submit_review():
     review = request.form.get('review').strip()
 
     # Paths for input/output notebooks
-    input_notebook = r'C:/Rozanne/Minor Project/text_processing.ipynb'
-    output_notebook = r'C:/Rozanne/Minor Project/text_processing_OUTPUT.ipynb'
+    input_notebook = r'text_processing.ipynb'
+    output_notebook = r'text_processing_OUTPUT.ipynb'
 
     try:
         # Execute the notebook with parameters
