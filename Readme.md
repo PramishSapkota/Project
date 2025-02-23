@@ -10,7 +10,7 @@ Detect Fake Review in
 - Nepali (Devnagari and Romanized both)
 
 ## Contributors
--Achyut Bhattrai
--Pramish Sapkota
--Rupesh Chaudhary
--Utsav Poudel
+- Achyut Bhattrai
+- Pramish Sapkota
+- Rupesh Chaudhary
+- Utsav Poudel

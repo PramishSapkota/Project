@@ -47,4 +47,4 @@ class RandomForest:
         return np.array([self._most_common_label(pred) for pred in tree_preds])
 
     def _most_common_label(self, y):
-        return Counter(y).most_common(1)[0][0]
+      return np.bincount(y).argmax()

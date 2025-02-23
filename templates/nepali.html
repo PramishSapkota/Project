@@ -1,11 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nepali Language Prediction</title>
+    <link rel="stylesheet" href="../static/css/nepali.css" />
+  </head>
+  <body>
+    <!-- No header to keep it similar to mainpage -->
+    <div class="container">
+      <aside class="sidebar">
+        <div class="user-info">
+          <img
+            src="{{ url_for('static', filename='user-avatar.png') }}"
+            alt="User Avatar"
+            class="user-avatar"
+          />
+          <p>User: {{ username }}</p>
+        </div>
+        <nav class="navigation">
+          <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('mainpage') }}">English Language Prediction</a></li>
+            <li><a href="{{ url_for('nepali') }}">Nepali Language Prediction</a></li>
+            <li><a href="{{url_for('historypage') }}" >History</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+          </ul>
+        </nav>
+        <!-- Theme Switcher in Sidebar -->
+        <div class="theme-switch-wrapper">
+          <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <span class="slider round"></span>
+          </label>
+          <em>Dark Mode</em>
+        </div>
+      </aside>
+
+      <div class="main-wrapper">
+        <!-- Tabs for Form Toggle -->
+        <div class="tabs">
+          <button class="tab-link active" onclick="openTab(event, 'romanized-nepali')">
+            Romanized Nepali
+          </button>
+          <button class="tab-link" onclick="openTab(event, 'devanagari-nepali')">
+            Devanagari Nepali
+          </button>
+        </div>
+
+        <main class="main-content">
+          <!-- Romanized Nepali Form (Default) -->
+          <div id="romanized-nepali" class="tab-content" style="display: block;">
+            <h2>Nepali Review Analysis (Romanized)</h2>
+            <form method="post" action="{{ url_for('Romanized_Nepali') }}" id="romanized-form">
+              <label for="romanized-rating">Rating:</label>
+              <input type="number" name="rating" id="romanized-rating" min="1" max="5" required />
+              <label for="romanized-review">Review in Roman Nepali:</label>
+              <textarea name="review" id="romanized-review" rows="4" required></textarea>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+          <div class="loader-overlay" id="loader-overlay">
+            <div class="loader"></div>
+          </div>
+
+          <!-- Devanagari Nepali Form -->
+          <div id="devanagari-nepali" class="tab-content" style="display: none;">
+            <h2>नेपाली समीक्षा विश्लेषण (देवनागरी)</h2>
+            <form method="post" action="{{ url_for('Devnagari_Nepali') }}" id="devanagari-form">
+              <label for="devanagari-rating">मूल्याङ्कन:</label>
+              <input type="number" name="rating" id="devanagari-rating" min="1" max="5" required />
+              <label for="devanagari-review">नेपालीमा समीक्षा गर्नुहोस्:</label>
+              <textarea name="review" id="devanagari-review" rows="4" required></textarea>
+              <button type="submit">पेश गर्नुहोस्</button>
+            </form>
+          </div>
+          <div class="loader-overlay" id="loader-overlay">
+            <div class="loader"></div>
+          </div>
+
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              <section class="flash-messages">
+                {% for category, message in messages %}
+                  <div class="flash-message {{ category }}">
+                    {{ message | safe }}
+                  </div>
+                {% endfor %}
+              </section>
+            {% endif %}
+          {% endwith %}
+        </main>
+      </div>
+    </div>
+
+    <!-- Tab switching and loader script -->
+    <script>
+        // Tab switching functionality
+        function openTab(evt, tabName) {
+          var i, tabcontent, tablinks;
+          tabcontent = document.getElementsByClassName("tab-content");
+          for (i = 0; i < tabcontent.length; i++) {
+              tabcontent[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tab-link");
+          for (i = 0; i < tablinks.length; i++) {
+              tablinks[i].classList.remove("active");
+          }
+          document.getElementById(tabName).style.display = "block";
+          evt.currentTarget.classList.add("active");
+
+          // Store the active tab in localStorage
+          localStorage.setItem('activeTab', tabName);
+      }
+
+      // Retrieve the active tab from localStorage when the page loads
+      document.addEventListener('DOMContentLoaded', function() {
+          var activeTab = localStorage.getItem('activeTab');
+
+          if (activeTab) {
+              // Find the tab link and click it to activate the tab
+              var tabLink = document.querySelector('.tab-link[onclick*="' + activeTab + '"]');
+              if (tabLink) {
+                  tabLink.click();
+              }
+          }
+      });
+
+    </script>
     
-</body>
+    <script src="../static/js/script.js"></script>
+  </body>
 </html>

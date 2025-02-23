@@ -1,56 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rating Page</title>
-    <link rel="stylesheet" href="../static/css/mainpage.css" />
-  </head>
-  <body>
-    <div class="main">
-      <div class="navbar">
-        <h2>My Page</h2>
-        <div class="nav-right">
-          <a href="./nepaliReview" class="nepali-review">Nepali Review</a>
-          <button id="logout" class="logout-btn">
-            <a href="{{ url_for('logout') }}" style="color: white; text-decoration: none;">Logout</a>
-          </button>
-        </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Language Prediction</title>
+  <link rel="stylesheet" href="../static/css/mainpage.css">
+</head>
+<body>
+
+  <div class="container">
+    <aside class="sidebar">
+      <div class="user-info">
+        <img src="{{ url_for('static', filename='user-avatar.png') }}" alt="User Avatar" class="user-avatar">
+        <p class="username">User: {{ username }}</p>
       </div>
-      <div class="container">
-        <span class="welcome-message">Welcome, {{ username }}!</span>
-        <h3>Enter Rating and Review</h3>
+
+      <nav class="navigation">
+        <ul>
+          <li><a href="{{ url_for('home') }}">Home</a></li>
+          <li><a href="{{ url_for('mainpage') }}">English Language Prediction</a></li>
+          <li><a href="{{ url_for('nepali') }}">Nepali Language Prediction</a></li>
+          <li><a href="{{url_for('historypage') }}" >History</a></li>
+          <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+      </nav>
+
+      <!-- Theme Switcher -->
+      <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+          <input type="checkbox" id="checkbox" />
+          <span class="slider round"></span>
+        </label>
+        <em>Dark Mode</em>
+      </div>
+    </aside>
+  
+    <main class="main-content">
+      <div class="content-card">
+        <h2>English Language Review Analysis</h2>
         
-        <!-- Form for submitting rating and review -->
-        <form action="{{ url_for('submit_review') }}" method="POST">
-          <!-- Number input for rating between 1 and 5 -->
-          <div class="rating-container">
-            <input type="number" id="rating" name="rating" min="1" max="5" step="1" placeholder="Rate between 1 and 5" required />
-          </div>
+        <form method="post" action="{{ url_for('submit_review') }}" id="review-form">
+          <label for="rating">Rating:</label>
+          <input type="number" name="rating" id="rating" min="1" max="5" required>
 
-          <!-- Text input for review -->
-          <div class="review-container">
-            <input type="text" class="text-input" name="review" placeholder="Write a Review..." required />
-          </div>
+          <label for="review">Review:</label>
+          <textarea name="review" id="review" rows="4" required></textarea>
 
-          <!-- Submit button -->
-          <div class="submit-btn-container">
-            <button type="submit" id="submit-comment">Submit</button>
-          </div>
+          <button type="submit">Submit</button>
         </form>
-        
+
+        <!-- Loader Overlay -->
+  <div class="loader-overlay" id="loader-overlay">
+    <div class="loader"></div>
+  </div>
+
         {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-          <div class="prediction-result">
-            {% for category, message in messages %}
-              <p class="{{ category }}">{{ message | safe }}</p>  
-            {% endfor %}
-          </div>
-        {% endif %}
+          {% if messages %}
+            <section class="flash-messages">
+              {% for category, message in messages %}
+                <div class="flash-message {{ category }}">
+                  {{ message | safe }}
+                </div>
+              {% endfor %}
+            </section>
+          {% endif %}
         {% endwith %}
-        
       </div>
-    </div>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-  </body>
+    </main>
+  </div>
+
+  
+
+  <script src="../static/js/script.js"></script>
+</body>
 </html>

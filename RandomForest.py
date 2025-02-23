@@ -33,7 +33,7 @@ class RandomForest:
 
     def _bootstrap_samples(self, X, y):
         n_samples = X.shape[0]
-        idxs = np.random.choice(X.shape[0], n_samples, replace=True)
+        idxs = np.random.randint(0, n_samples, size=n_samples)
         return X[idxs], y[idxs]
 
     def predict(self, X):

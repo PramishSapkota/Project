@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>History</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/history.css') }}">
+</head>
+<body>
+  <div class="main-container">
+    <aside class="sidebar">
+      <div class="user-info">
+        <img src="{{ url_for('static', filename='user-avatar.png') }}" alt="User Avatar" class="user-avatar">
+        <p class="username">User: {{ username }}</p>
+      </div>
+
+      <nav class="navigation">
+        <ul>
+          <li><a href="{{ url_for('home') }}">Home</a></li>
+          <li><a href="{{ url_for('mainpage') }}">English Language Prediction</a></li>
+          <li><a href="{{ url_for('nepali') }}">Nepali Language Prediction</a></li>
+          <li><a href="{{ url_for('historypage') }}" class="active">History</a></li>
+          <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+      </nav>
+
+      <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+          <input type="checkbox" id="checkbox" />
+          <span class="slider round"></span>
+        </label>
+        <em>Dark Mode</em>
+      </div>
+    </aside>
+
+    <div class="content-container">
+      <h1>Review History</h1>
+      
+      <div class="section">
+        <h2>English Reviews</h2>
+        <table>
+            <tr>
+                <th>SN</th>
+                <th>Review</th>
+                <th>Rating</th>
+                <th>Prediction</th>
+                <th>Date</th>
+            </tr>
+            {% for review in english_review %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ review.review_text }}</td>
+                <td>{{ review.rating }}</td>
+                <td>{{ review.prediction }}</td>
+                <td>{{ review.timestamp.strftime('%Y-%m-%d %H:%M') }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5">No English reviews found.</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    
+    <div class="section">
+        <h2>Roman Nepali Reviews</h2>
+        <table>
+            <tr>
+                <th>SN</th>
+                <th>Review</th>
+                <th>Rating</th>
+                <th>Prediction</th>
+                <th>Date</th>
+            </tr>
+            {% for review in roman_review %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ review.review_text }}</td>
+                <td>{{ review.rating }}</td>
+                <td>{{ review.prediction }}</td>
+                <td>{{ review.timestamp.strftime('%Y-%m-%d %H:%M') }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5">No Romanized Nepali reviews found.</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+      
+      <div class="section">
+        <h2>Nepali Reviews</h2>
+        <table>
+            <tr>
+                <th>SN</th>
+                <th>Review</th>
+                <th>Rating</th>
+                <th>Prediction</th>
+                <th>Date</th>
+            </tr>
+            {% for review in nepali_review %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ review.review_text }}</td>
+                <td>{{ review.rating }}</td>
+                <td>{{ review.prediction }}</td>
+                <td>{{ review.timestamp.strftime('%Y-%m-%d %H:%M') }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5">No Nepali reviews found.</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

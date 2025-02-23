@@ -1,0 +1,254 @@
+/*********************************************************
+  RESET & GENERAL STYLES
+**********************************************************/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
+}
+
+/*********************************************************
+  LIGHT & DARK MODE BACKGROUND
+**********************************************************/
+body {
+  background: linear-gradient(120deg, #f4f4f4 0%, #ffffff 100%);
+  color: #333;
+}
+
+body.dark-mode {
+  background: linear-gradient(120deg, #2c3e50 0%, #1a1a2e 100%);
+  color: #ecf0f1;
+}
+
+/*********************************************************
+  MAIN CONTAINER
+**********************************************************/
+.main-container {
+  display: flex;
+  width: 100%;
+}
+
+/*********************************************************
+  SIDEBAR
+**********************************************************/
+.sidebar {
+  width: 250px;
+  background: linear-gradient(135deg, #8e44ad 0%, #732d91 100%);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  height: 100vh;
+  position: fixed;
+}
+
+body.dark-mode .sidebar {
+  background: #8529a3;
+}
+
+.user-info {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.user-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  margin-bottom: 10px;
+  transition: transform 0.3s;
+}
+
+.user-avatar:hover {
+  transform: scale(1.05);
+}
+
+.username {
+  color: #fff;
+  font-weight: 600;
+}
+
+.navigation ul {
+  list-style: none;
+}
+
+.navigation ul li {
+  margin-bottom: 20px;
+}
+
+.navigation ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  display: block;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.navigation ul li a:hover,
+.navigation ul li a.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/*********************************************************
+  CONTENT CONTAINER
+**********************************************************/
+.content-container {
+  flex: 1;
+  margin-left: 270px;
+  padding: 20px;
+}
+
+/*********************************************************
+  SECTION STYLING
+**********************************************************/
+.section {
+  margin-bottom: 30px;
+}
+
+.section h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #732d91;
+}
+
+body.dark-mode .section h2 {
+  color: #ecf0f1;
+}
+
+/*********************************************************
+  TABLE STYLING
+**********************************************************/
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+table th, table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+table th {
+  background: #8e44ad;
+  color: white;
+}
+
+body.dark-mode table th {
+  background: #732d91;
+}
+
+table td {
+  background: #ffffff;
+}
+
+body.dark-mode table td {
+  background: #2c3e50;
+  color: #ecf0f1;
+}
+
+/* Zebra striping for table rows */
+table tbody tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+body.dark-mode table tbody tr:nth-child(even) {
+  background: #3a506b;
+}
+
+/*********************************************************
+  RESPONSIVE DESIGN
+**********************************************************/
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+  }
+
+  .user-info {
+    display: none;
+  }
+
+  .navigation ul {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin: 0;
+  }
+
+  .navigation ul li {
+    margin-bottom: 0;
+  }
+
+  .content-container {
+    margin-left: 0;
+    padding: 10px;
+  }
+}
+
+.theme-switch-wrapper {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  margin-top: 40px;
+}
+
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  border-radius: 24px;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+}
+
+.slider::before {
+  content: "☀️";
+  position: absolute;
+  left: 4px;
+  bottom: 3px;
+  font-size: 14px;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #222;
+}
+
+input:checked + .slider::before {
+  transform: translateX(26px);
+  content: "🌙";
+}
+
+body.dark-mode input:checked + .slider {
+  background-color: #8e44ad;
+}

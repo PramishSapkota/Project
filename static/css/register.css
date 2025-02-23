@@ -1,0 +1,123 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #8e44ad 0%, #3498db 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #fff;
+    overflow: hidden;
+  }
+  
+  .container {
+    background: #fff;
+    color: #333;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    animation: slideIn 0.8s ease-in-out;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+    font-size: 32px;
+    color: #8e44ad;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: border 0.3s;
+  }
+  
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    border-color: #8e44ad;
+    box-shadow: 0 0 5px rgba(142, 68, 173, 0.5);
+  }
+  
+  button[type="submit"] {
+    background: #8e44ad;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-weight: bold;
+  }
+  
+  button[type="submit"]:hover {
+    background: #732d91;
+  }
+  
+  p {
+    margin-top: 20px;
+    color: #666;
+  }
+  
+  p a {
+    color: #8e44ad;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  p a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Flash Messages */
+  .flash-messages {
+    margin-bottom: 15px;
+  }
+  
+  .flash-message {
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  
+  .flash-message.success {
+    background: #2ecc71;
+  }
+  
+  .flash-message.error {
+    background: #e74c3c;
+  }
+  
+  /* Animations */
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
