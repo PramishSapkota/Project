@@ -2,8 +2,8 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background: #fdfdfd;
-    color: #2c3e50;
+    background: #F9FAFB;
+    color: #23282d;
     transition: background 0.3s, color 0.3s;
   }
   
@@ -14,15 +14,15 @@ body {
   
   .dark-mode header,
   .dark-mode footer {
-    background: #2c3e50; /* Darker header/footer */
+    background: #23282d; /* Darker header/footer */
   }
   
   .dark-mode .language-approaches {
-    background: #2c3e50; /* Adjusted section background */
+    background: #23282d; /* Adjusted section background */
   }
   
   header {
-    background: #34495e;
+    background: #2c3641;
     padding: 15px 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
     position: sticky;
@@ -53,8 +53,10 @@ body {
   }
   
   .nav-links a:hover {
-    background: #2c3e50;
+    background: #0c1a27;
   }
+
+  hover
   
   .theme-switch-wrapper {
     margin-left: auto;
@@ -95,7 +97,7 @@ body {
   }
   
   input:checked + .slider {
-    background-color: #1abc9c;
+    background-color: #6c8094;
 
   }
 
@@ -110,7 +112,7 @@ body {
 
 
   .hero {
-    background: linear-gradient(to bottom right, #1abc9c, #16a085);
+    background: linear-gradient(135deg, #8575a5 0%, #2c3641 100%);
     color: #fff;
     text-align: center;
     padding: 80px 20px;
@@ -127,12 +129,12 @@ body {
   }
 
   .dark-mode .hero {
-    background: linear-gradient(to bottom right, #1b1b2f, #2c3e50); /* Darker gradient */
+    background: linear-gradient(to bottom right, #1b1b2f, #23282d); /* Darker gradient */
   }
   
   .cta-buttons button {
     background: #ecf0f1;
-    color: #2c3e50;
+    color: #23282d;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -144,7 +146,7 @@ body {
   
   .cta-buttons button:hover {
     background: #bdc3c7;
-    color: #2c3e50;
+    color: #23282d;
   }
 
   .dark-mode .cta-buttons button {
@@ -175,7 +177,7 @@ body {
   }
   
   .tab-link {
-    background: #3498db;
+    background: #6c8094;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -186,12 +188,12 @@ body {
   
   .tab-link:hover,
   .tab-link.active {
-    background: #2980b9;
+    background: #2c3641;
   }
   
   .tab-content {
     display: none;
-    text-align: left;
+    /* text-align: left; */
   }
   
   .tab-content.active {
@@ -203,13 +205,13 @@ body {
   }
 
   .dark-mode .tab-link {
-    background: #1abc9c; /* Teal accent for consistency */
+    background: #6c8094; /* Teal accent for consistency */
     color: #fff;
   }
   
   .dark-mode .tab-link:hover,
   .dark-mode .tab-link.active {
-    background: #16a085; /* Darker teal */
+    background: #2c3641; /* Darker teal */
   }
   
   .dark-mode .tab-content {
@@ -260,7 +262,7 @@ body {
   }
   
   .flip-card-front {
-    background: #3498db;
+    background: linear-gradient(135deg, #8575a5 0%, #2c3641 100%);
     color: white;
     display: flex;
     flex-direction: column;
@@ -270,7 +272,7 @@ body {
   
   .flip-card-back {
     background: #ecf0f1;
-    color: #2c3e50;
+    color: #23282d;
     transform: rotateY(180deg);
     padding: 22px;
     box-sizing: border-box;
@@ -282,16 +284,16 @@ body {
   }
 
   .dark-mode .flip-card-front {
-    background: #1abc9c; /* Teal front */
+    background: #6c8094; /* Teal front */
   }
   
   .dark-mode .flip-card-back {
-    background: #2c3e50; /* Dark back */
+    background: #23282d; /* Dark back */
     color: #e0e0e0;
   }
   
   footer {
-    background: #34495e;
+    background: #2c3641;
     color: #ecf0f1;
     text-align: center;
     padding: 22px;
@@ -302,7 +304,7 @@ body {
   }
 
   .dark-mode .pipeline {
-    background: #2c3e50; /* Dark step background */
+    background: #23282d; /* Dark step background */
     color: #f0f0f0;
   }
 
@@ -311,7 +313,7 @@ body {
 }
   
   .dark-mode .timeline-step span {
-    background: #1abc9c; /* Teal accent */
+    background: #6c8094; /* Teal accent */
   }
 
   .dark-mode .example {
@@ -327,32 +329,6 @@ body {
     color: #95a5a6; /* Subtle text */
   }
   
-  /* .dark-mode header,
-  .dark-mode .tab-link,
-  .dark-mode footer {
-    background: #2c3e50;
-    color: #f0f0f0;
-  }
-  
-  .dark-mode .tab-content {
-    background: #3b3b51;
-    color: #f0f0f0;
-  }
-  
-  .dark-mode .flip-card-back {
-    background: #2c3e50;
-    color: #f0f0f0;
-  }
-  
-  .dark-mode .cta-buttons button {
-    background: #555;
-    color: #fff;
-  }
-  
-  .dark-mode .cta-buttons button:hover {
-    background: #666;
-  } */
-
   /* Our Pipeline */
 .pipeline {
     background: #f7f9fb;
@@ -363,7 +339,7 @@ body {
   .pipeline h2 {
     font-size: 32px;
     margin-bottom: 30px;
-    color: #2c3e50;
+    color: #23282d;
   }
   
   .timeline {
@@ -375,7 +351,7 @@ body {
   
   .timeline-step {
     background: #ffffff;
-    color: #3498db;
+    color: #6c8094;
     border-radius: 50px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -386,7 +362,7 @@ body {
   
   .timeline-step span {
     display: block;
-    background: #3498db;
+    background: #6c8094;
     color: #fff;
     border-radius: 50%;
     width: 40px;
@@ -411,7 +387,7 @@ body {
   .real-world-examples h2 {
     font-size: 32px;
     margin-bottom: 30px;
-    color: #2c3e50;
+    color: #23282d;
   }
   
   .example {
@@ -432,7 +408,7 @@ body {
   }
   
   .example p {
-    color: #2c3e50;
+    color: #23282d;
     margin: 5px 0;
   }
   
@@ -475,7 +451,7 @@ nav {
   }
   
   .dark-mode nav {
-    background: #2c3e50; /* Dark nav bar */
+    background: #23282d; /* Dark nav bar */
   }
   
   .dark-mode .nav-links li a {
@@ -501,13 +477,13 @@ nav {
   
   .nav-links li a {
     text-decoration: none;
-    color: #3498db;
+    color: #6c8094;
     font-weight: bold;
     transition: color 0.3s;
   }
   
   .nav-links li a:hover {
-    color: #2980b9;
+    color: #2c3641;
   }
   
   .dark-mode .nav-links li a {
@@ -556,7 +532,7 @@ nav {
   }
   
   input:checked + .slider {
-    background-color: #3498db;
+    background-color: #6c8094;
   }
   
   input:checked + .slider:before {
@@ -639,7 +615,7 @@ nav {
 }
 
 .dropdown-content a {
-  color: #2c3e50;
+  color: #23282d;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -651,7 +627,7 @@ nav {
 
 /* Dark mode styles */
 .dark-mode .dropdown-content {
-  background: #2c3e50;
+  background: #23282d;
 }
 
 .dark-mode .dropdown-content a {
@@ -671,7 +647,7 @@ nav {
   margin-bottom: 20px;
 }
 .tab-link {
-  background: #3498db;
+  background: #6c8094;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -681,25 +657,30 @@ nav {
 }
 .tab-link:hover,
 .tab-link.active {
-  background: #2980b9;
+  background: #2c3641;
 }
 .pie-charts-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
+  flex-direction: column;
+  width: 100%
 }
 .pie-tab-content { 
   display: none; 
-  width: 400px; 
+  width: 100%;
   height: 400px;
+  max-width: 500px;
+  margin : 0 auto;
 }
-.pie-tab-content.active { display: block; }
+.pie-tab-content.active { 
+  display: flex;
+  justify-content: center; 
+}
 
 
 .dark-mode .dataset-distribution {
-  background: #2c3e50; /* Dark background */
+  background: #23282d; /* Dark background */
   color: #e0e0e0; /* Light text */
 }
 
@@ -710,13 +691,13 @@ nav {
 }
 
 .dark-mode .tab-link {
-  background: #1abc9c; /* Teal accent */
+  background: #6c8094; /* Teal accent */
   color: #fff;
 }
 
 .dark-mode .tab-link:hover,
 .dark-mode .tab-link.active {
-  background: #16a085; /* Darker teal */
+  background: #2c3641; /* Darker teal */
 }
 
 .dark-mode .pie-charts-container {
@@ -726,7 +707,7 @@ nav {
 }
 
 .dark-mode .pie-tab-content {
-  background: #2c3e50; /* Dark card background */
+  background: #23282d; /* Dark card background */
   color: #a6bedd;
   border-radius: 10px;
   padding: 10px;
@@ -747,11 +728,11 @@ nav {
 }
 
 .dark-mode .plot-container {
-  background: #2c3e50 ;
+  background: #23282d ;
 }
 
 .dark-mode .pie-tab-content, 
 .dark-mode .tab-content {
-  background: #2c3e50;
+  background: #23282d;
   color: #e0e0e0;
 }

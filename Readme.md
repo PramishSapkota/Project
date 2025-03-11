@@ -1,11 +1,11 @@
 # Minor Project
 
 ## Overview
-This repository contains the code and documentation for the Minor Project. The project aims to detect fake product review by using three machine learning algorithms namely Logistic Regression, Random Forest Classifier and Support Vector Machine(SVC).
+This repository contains the code and documentation for the Minor Project. The project aims to detect fake product reviews using three machine learning algorithms: Logistic Regression, Random Forest Classifier, and Support Vector Machine (SVC).
 
 
 ## Features
-Detect Fake Review in 
+Detect Fake Reviews in the following languages:
 - English
 - Nepali (Devnagari and Romanized both)
 

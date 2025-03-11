@@ -18,13 +18,13 @@ body {
   LIGHT & DARK MODE BACKGROUND
 **********************************************************/
 body {
-  background: linear-gradient(120deg, #f4f4f4 0%, #ffffff 100%);
+  background: linear-gradient(120deg, #f4f4f4, #ffffff);
   color: #333;
 }
 
 body.dark-mode {
-  background: linear-gradient(120deg, #2c3e50 0%, #1a1a2e 100%);
-  color: #ecf0f1;
+  background: linear-gradient(120deg, #1a1a2e, #23282d);
+  color: #e0e0e0;
 }
 
 /*********************************************************
@@ -40,7 +40,7 @@ body.dark-mode {
 **********************************************************/
 .sidebar {
   width: 250px;
-  background: linear-gradient(135deg, #8e44ad 0%, #732d91 100%);
+  background: linear-gradient(135deg, #2c3641 0%, #8575a5 100%);
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -49,7 +49,7 @@ body.dark-mode {
 }
 
 body.dark-mode .sidebar {
-  background: #8529a3;
+  background: #23282d; 
 }
 
 .user-info {
@@ -98,6 +98,11 @@ body.dark-mode .sidebar {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+body.dark-mode .navigation ul li a:hover,
+body.dark-mode .navigation ul li a.active {
+  background: rgba(255, 255, 255, 0.2); 
+}
+
 /*********************************************************
   CONTENT CONTAINER
 **********************************************************/
@@ -117,11 +122,11 @@ body.dark-mode .sidebar {
 .section h2 {
   font-size: 22px;
   margin-bottom: 10px;
-  color: #732d91;
+  color: #8575a5;
 }
 
 body.dark-mode .section h2 {
-  color: #ecf0f1;
+  color: #e0e0e0;
 }
 
 /*********************************************************
@@ -140,12 +145,12 @@ table th, table td {
 }
 
 table th {
-  background: #8e44ad;
+  background: #465564;
   color: white;
 }
 
 body.dark-mode table th {
-  background: #732d91;
+  background: #6c8094;
 }
 
 table td {
@@ -153,8 +158,8 @@ table td {
 }
 
 body.dark-mode table td {
-  background: #2c3e50;
-  color: #ecf0f1;
+  background: #3b3b51; 
+  color: #e0e0e0;
 }
 
 /* Zebra striping for table rows */
@@ -163,7 +168,7 @@ table tbody tr:nth-child(even) {
 }
 
 body.dark-mode table tbody tr:nth-child(even) {
-  background: #3a506b;
+  background: #2c3641;
 }
 
 /*********************************************************
@@ -250,5 +255,5 @@ input:checked + .slider::before {
 }
 
 body.dark-mode input:checked + .slider {
-  background-color: #8e44ad;
+  background-color: #6c8094;
 }

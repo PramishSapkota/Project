@@ -1,3 +1,6 @@
+import os
+os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+
 from flask import Flask , render_template , request , redirect , session , url_for , flash
 from werkzeug.security import generate_password_hash , check_password_hash
 from flask_sqlalchemy import SQLAlchemy
@@ -5,17 +8,34 @@ import joblib
 import papermill as pm
 import sys
 from datetime import datetime
+from flask_dance.contrib.google import make_google_blueprint, google
+from flask_dance.consumer import oauth_authorized
 
+# import key_secret, clientId, clientSecret from app_secrets file
+from app_secrets import *
 
 app = Flask(__name__)
 
-app.secret_key = "Your_secret_key"
+app.secret_key = key_secret
 
 # Configure Sql Alchemy to work with flask
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
+
+app.config['GOOGLE_OAUTH_CLIENT_ID'] = clientId
+app.config['GOOGLE_OAUTH_CLIENT_SECRET'] = clientSecret
+
+google_bp = make_google_blueprint(
+    client_id=app.config['GOOGLE_OAUTH_CLIENT_ID'],
+    client_secret=app.config['GOOGLE_OAUTH_CLIENT_SECRET'],
+    scope=["openid", "https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.profile"],
+    redirect_to="mainpage",
+    offline=True,  # Add this to enable refresh tokens
+    reprompt_consent=True,
+)
+app.register_blueprint(google_bp, url_prefix="/google-login")
 
 # Creating a database
 
@@ -25,7 +45,7 @@ db = SQLAlchemy(app)
 
 class User(db.Model):
       
-      #Class Variables Creation
+    #Class Variables Creation
 
     id = db.Column(db.Integer , primary_key = True) 
     username = db.Column(db.String(20) , unique = True , nullable = False) 
@@ -60,9 +80,9 @@ class RomanReview(db.Model):
     prediction = db.Column(db.String(10), nullable=False)
     timestamp = db.Column(db.DateTime, default = datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    
 
-
-class DevnagariReview(db.Model):
+class NepaliReview(db.Model):
     id = db.Column(db.Integer , primary_key = True) 
     review_text = db.Column(db.Text , nullable = False)
     rating = db.Column(db.Integer, nullable = False)
@@ -121,6 +141,32 @@ def login():
 
           
      return render_template("login.html")
+ 
+
+
+@oauth_authorized.connect_via(google_bp)
+def google_logged_in(blueprint, token):
+    if not token:
+        flash("Failed to log in with Google.", "error")
+        return False
+    resp = blueprint.session.get("/oauth2/v2/userinfo")
+    if not resp.ok:
+        flash("Failed to fetch user info from Google.", "error")
+        return False
+    user_info = resp.json()
+    google_name = user_info.get("name", "User")
+    google_email = user_info["email"]
+
+    user = User.query.filter_by(email=google_email).first()
+    if not user:
+        user = User(username=google_name, email=google_email)
+        user.set_password("default_password")
+        db.session.add(user)
+        db.session.commit()
+    session['username'] = user.username
+    flash("Successfully signed in with Google.", "success")
+    # Return False to prevent Flask-Dance from automatically saving the token
+    return False
 
 
 #Otherwise ask them to register
@@ -178,8 +224,8 @@ def submit_review():
     current_user = User.query.filter_by(username=session['username']).first()
 
     # Paths for input/output notebooks
-    input_notebook = r'text_processing.ipynb'
-    output_notebook = r'text_processing_OUTPUT.ipynb'
+    input_notebook = r'C:/Rozanne/Minor Project/text_processing.ipynb'
+    output_notebook = r'C:/Rozanne/Minor Project/text_processing_OUTPUT.ipynb'
 
     try:
         # Execute the notebook with parameters
@@ -274,8 +320,8 @@ def Romanized_Nepali():
     nr_input_rating = int(request.form['rating'])
     nr_input_review = request.form.get('review').strip()
 
-    nr_input_notebook = r'file.ipynb'
-    nr_output_notebook = r'file_OUTPUT.ipynb'
+    nr_input_notebook = r'C:\Rozanne\Minor Project\file.ipynb'
+    nr_output_notebook = r'C:\Rozanne\Minor Project\file_OUTPUT.ipynb'
 
     try:
         pm.execute_notebook(
@@ -286,7 +332,7 @@ def Romanized_Nepali():
 
         from nbformat import read
 
-        with open(nr_output_notebook , 'r' , encoding = 'utf-8 ') as f:
+        with open(nr_output_notebook , 'r' , encoding = 'utf-8') as f:
              nbnr = read(f, as_version= 4)
 
         
@@ -295,11 +341,14 @@ def Romanized_Nepali():
             if cell.cell_type == 'code' and 'print(' in cell.source:
                 outputs = cell.outputs
                 if outputs:
-                    for output in outputs:
-                        if 'text' in output:
-                            prediction_output = output['text']
-                            break
-
+                    # for output in outputs:
+                    #     if 'text' in output:
+                    #         prediction_output = output['text']
+                    #         break
+                    for output in cell.outputs:
+                        if hasattr(output, 'text'):
+                            prediction_output = output.text.strip()
+                            
         if prediction_output:
             
             prediction = 'Fake' if "FAKE" in prediction_output else "Real"
@@ -341,24 +390,24 @@ def Romanized_Nepali():
 
 
 
-@app.route('/Devnagari_Nepali', methods = ['POST'])
+@app.route('/Devnagari_Nepali' , methods = ['POST'])
 def Devnagari_Nepali():
-    dn_input_rating = int(request.form['rating'])
-    dn_input_review = request.form.get('review').strip()
+    n_input_rating = int(request.form['rating'])
+    n_input_review = request.form.get('review').strip()
 
-    dn_input_notebook = r'Devnagari_input.ipynb'
-    dn_output_notebook = r'Devnagari_output.ipynb'
+    n_input_notebook = r'Input_devnagari.ipynb'
+    n_output_notebook = r'devnagari_OUTPUT.ipynb'
 
     try:
         pm.execute_notebook(
-            dn_input_notebook,
-            dn_output_notebook,
-            parameters= {'input_rating' : dn_input_rating , 'input_review' : dn_input_review}
+            n_input_notebook,
+            n_output_notebook,
+            parameters= {'n_input_rating' : n_input_rating , 'n_input_review' : n_input_review}
         ) 
 
         from nbformat import read
 
-        with open(dn_output_notebook , 'r' , encoding = 'utf-8 ') as f:
+        with open(n_output_notebook , 'r' , encoding = 'utf-8') as f:
              nbnr = read(f, as_version= 4)
 
         
@@ -374,13 +423,13 @@ def Devnagari_Nepali():
 
         if prediction_output:
             
-            label_text = 'Fake' if "Review is Fake" in prediction_output else "Real"
+            label_text = 'Fake' if "Fake" in prediction_output else "Real"
             current_user = User.query.filter_by(username=session['username']).first()
             
             if current_user:
-                new_review = DevnagariReview(
-                    review_text =dn_input_review,
-                    rating = dn_input_rating,
+                new_review = NepaliReview(
+                    review_text =n_input_review,
+                    rating = n_input_rating,
                     prediction = label_text,
                     user_id = current_user.id
                 )
@@ -413,7 +462,6 @@ def Devnagari_Nepali():
 
 
 
-
 @app.route('/historypage')
 def historypage():
     if 'username' in session:
@@ -422,21 +470,17 @@ def historypage():
         
         english_review = EnglishReview.query.filter_by(user_id = current_user.id).all()
         roman_review = RomanReview.query.filter_by(user_id = current_user.id).all()
-        devnagari_review = DevnagariReview.query.filter_by(user_id = current_user.id).all()
+        nepali_review = NepaliReview.query.filter_by(user_id= current_user.id).all()
         
-        
-        # Debug: Print number of reviews fetched
+        # # Debug: Print number of reviews fetched
         # print(f"English Reviews: {len(english_review)}")
-        # print(f"Nepali Reviews (Roman): {len(roman_review)}")
-        # print(f"Nepali Reviews (Devnagari): {len(devnagari_review)}")
-
-        
+        # print(f"Nepali Reviews: {len(roman_review)}")
         
         return render_template('history.html', 
                                username= username,
                                english_review=english_review,
                                roman_review=roman_review,
-                               devnagari_review=devnagari_review
+                               nepali_review = nepali_review
                                )
     
     return redirect(url_for('login'))
@@ -445,5 +489,5 @@ def historypage():
 
 if  __name__ == "__main__" :
     with app.app_context():
-        db.create_all()
+          db.create_all()
     app.run(debug = True)

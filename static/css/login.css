@@ -119,3 +119,33 @@ body {
     }
   }
   
+  /* Google Login Button Styles */
+.google-login-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.google-login-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #757575;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.google-login-button:hover {
+  background-color: #f7f7f7;
+}
+
+.google-logo {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}

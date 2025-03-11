@@ -142,29 +142,16 @@
     <section class="dataset-distribution">
       <h2>Training Data Distribution</h2>
       <div class="tabs">
-        <button class="tab-link active" onclick="openPieTab(event, 'english-pie')">
-          English
-        </button>
-        <button class="tab-link" onclick="openPieTab(event, 'romanized-nepali-pie')">
-          Romanized Nepali
-        </button>
-        <button class="tab-link" onclick="openPieTab(event, 'devanagari-nepali-pie')">
-          Devanagari Nepali
-        </button>
+          <button class="tab-link active" onclick="openPieTab(event, 'english-pie-chart')">English</button>
+          <button class="tab-link" onclick="openPieTab(event, 'romanized-nepali-pie-chart')">Romanized Nepali</button>
+          <button class="tab-link" onclick="openPieTab(event, 'devanagari-nepali-pie-chart')">Devanagari Nepali</button>
       </div>
-      <div class="pie-charts-container">
-        <div id="english-pie" class="pie-tab-content active">
-          <div id="english-pie-chart"></div>
-        </div>
-        <div id="romanized-nepali-pie" class="pie-tab-content">
-          <div id="romanized-nepali-pie-chart"></div>
-        </div>
-        <div id="devanagari-nepali-pie" class="pie-tab-content">
-          <div id="devanagari-nepali-pie-chart"></div>
-        </div>
-      </div>
-    </section>
-
+      
+      <div id="english-pie-chart" class="pie-tab-content active"></div>
+      <div id="romanized-nepali-pie-chart" class="pie-tab-content"></div>
+      <div id="devanagari-nepali-pie-chart" class="pie-tab-content"></div>
+  </section>
+  
     <section class="pipeline">
       <h2>Our Pipeline</h2>
       <div class="timeline">
@@ -214,13 +201,8 @@
     </footer>
 
     <script src="../static/js/home.js"></script>
-    <!-- <script>
-      const checkbox = document.getElementById("checkbox");
-      checkbox.addEventListener("change", () => {
-        document.body.classList.toggle("dark-mode");
-      });
-    </script> -->
     <script src="../static/js/script.js"></script>
-    
+    <script src="../static/js/bargraph.js"></script>
+    <script src="../static/js/piechart.js"></script>
   </body>
 </html>

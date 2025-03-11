@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../static/css/register.css">
 </head>
 <body>
-
+    <a href="{{ url_for('home') }}" class="home-btn" style="position: absolute; top: 20px; left: 20px; padding: 8px 20px; text-decoration: none; font-size: 16px; border-radius: 25px; border: 2px solid #ffffff; color: #e0e0e0; background: transparent;">Home</a>
     <div class="container">
         <h2>Register</h2>
 
@@ -36,7 +36,12 @@
 
             <button type="submit">Register</button>
         </form>
-
+        <div class="google-login-container">
+            <a href="{{ url_for('google.login') }}" class="google-login-button">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguNiA4LjYgMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=" alt="Google Logo" class="google-logo">
+                <span>Continue with Google</span>
+            </a>
+        </div>
         <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
     </div>
 
