@@ -30,8 +30,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Pie chart data
     const englishData = { labels: ["5 Star", "4 Star", "3 Star", "2 Star", "1 Star"], values: [24559, 7965, 3786, 1967, 2155] };
-    const romanizedNepaliData = { labels: ["5 Star", "4 Star", "3 Star", "2 Star", "1 Star"], values: [2706, 985, 506, 382, 324] };
-    const devanagariNepaliData = { labels: ["5 Star", "4 Star", "3 Star", "2 Star", "1 Star"], values: [2406, 792, 359, 202, 241] };
+    const romanizedNepaliData = { labels: ["5 Star", "4 Star", "3 Star", "2 Star", "1 Star"], values: [2733, 996, 510, 326, 386] };
+    const devanagariNepaliData = { labels: ["5 Star", "4 Star", "3 Star", "2 Star", "1 Star"], values: [6924, 2267, 1093, 573, 643] };
 
     // Initial chart load
     drawPieChart("english-pie-chart", englishData.labels, englishData.values);

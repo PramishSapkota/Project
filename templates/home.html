@@ -8,6 +8,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
       rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/home.css" />
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   </head>
@@ -93,7 +94,7 @@
       </div>
       <div id="devanagari-nepali" class="tab-content">
         <h3>Devanagari Nepali Review Detection</h3>
-        <p>Techniques: NEPBERT Model → Accuracy & Findings</p>
+        <p>Techniques: NEPBERTa Model → Accuracy & Findings</p>
         <div id="devanagari-nepali-graph"></div>
       </div>
     </section>
@@ -182,23 +183,84 @@
       <h2>Real-World Examples</h2>
       <div class="example">
         <h3>Fake Review</h3>
-        <p>"This product is amazing! I've never seen anything like it!"</p>
+        <p>"The product is okay. The design is good, but the performance didn’t feel that impressive. The battery drains quickly, and the camera is just average. It should be a bit better for the price"</p>
         <p class="analysis">
-          Analysis: Overly positive language with no specific details.
+          Analysis: Generic wording - The review can be applied to any electronics and Emotionless tone - Review feels like template style sentence. 
         </p>
       </div>
       <div class="example">
         <h3>Real Review</h3>
-        <p>"The product works well, but the battery life could be better."</p>
+        <p>"I ordered this for my husband...he loves the set...especially the noodle strainer:)"</p>
         <p class="analysis">
-          Analysis: Balanced feedback with specific critique.
+          Analysis: Includes personal details and also specifies product feature which indicates authenticity and uniqueness.
         </p>
       </div>
     </section>
 
+    <section class="about-us">
+      <h2>About Us</h2>
+      <p>
+        At Fake Review Detection, we are committed to enhancing online trust and transparency by using machine learning techniques to detect fake product reviews. Our platform analyzes English, Roman Nepali and Devnagari text using different algortihms like SVM, Logistic Regression, Random Forest, aswell as pre-trained architectures such as NepaliBERT. We employ a combination of TF-IDF, Word2Vec, and FastText embeddings, ensuring that our detection system is both robust and accurate. For Nepali reviews, we process both Devanagari and Romanized scripts, carefully preserving linguistic patterns including local slangs to capture subtle patterns in deceptive content. Our goal is simple: to empower consumers with reliable information by filtering out fake reviews, allowing businesses to maintain their credibility and users to make informed decisions.
+      </p>
+      <h4>Our Team:</h4>
+      <ul>
+        <li>Achyut Bhattarai</li>
+        <li>Pramish Sapkota</li>
+        <li>Rupesh Chaudhary </li>   
+        <li>Utsav Poudel</li>
+      </ul>
+      <div class="contact-header" onclick="toggleContactForm()">
+        <h3>Contact Us</h3>
+        <span class="material-icons gmail-icon">mail</span>
+      </div>
+    
+      <!-- Contact Form Popup -->
+      <div class="contact-popup">
+        <div class="contact-form-container">
+          <button class="close-btn" onclick="toggleContactForm()">&times;</button>
+          <form action="{{ url_for('contact.contact') }}" method="POST" class="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+            
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flashes">
+        {% for category, message in messages %}
+          <li class="flash {{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    
     <footer>
       <p>&copy; 2025 FakeReviewPrediction</p>
     </footer>
+    
+    <script>
+      // Toggle contact form visibility
+      function toggleContactForm() {
+        document.querySelector('.contact-popup').classList.toggle('active');
+      }
+      
+      // Close popup when clicking outside
+      document.querySelector('.contact-popup').addEventListener('click', function(e) {
+        if(e.target === this) {
+          this.classList.remove('active');
+        }
+      });
+    </script>
 
     <script src="../static/js/home.js"></script>
     <script src="../static/js/script.js"></script>

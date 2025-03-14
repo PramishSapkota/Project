@@ -35,13 +35,13 @@ document.addEventListener('DOMContentLoaded', function() {
     function renderGraphForTab(tabName) {
         switch (tabName) {
             case "english":
-                createBarChart("english-graph", ["SVM", "Logistic Regression", "Random Forest"], [82.44, 72.35, 73.26], "English Model Accuracy");
+                createBarChart("english-graph", ["SVM", "Logistic Regression", "Random Forest"], [82.39, 72.11, 73.04], "English Model Accuracy");
                 break;
             case "romanized-nepali":
-                createBarChart("romanized-nepali-graph", ["SVM", "Logistic Regression", "Random Forest"], [81.65, 79.92, 72.07], "Romanized Nepali Model Accuracy");
+                createBarChart("romanized-nepali-graph", ["SVM", "Logistic Regression", "Random Forest"], [81.63, 79.92, 71.54], "Romanized Nepali Model Accuracy");
                 break;
             case "devanagari-nepali":
-                createBarChart("devanagari-nepali-graph", ["NEPBERT"], [87], "Devanagari Nepali Model Accuracy");
+                createBarChart("devanagari-nepali-graph", ["NEPBERTa"], [87], "Devanagari Nepali Model Accuracy");
                 break;
         }
     }

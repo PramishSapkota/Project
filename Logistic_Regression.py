@@ -1,7 +1,8 @@
 import numpy as np
 
 def sigmoid(x):
-    return 1 / (1 + np.exp(-x))
+  x = np.clip(x, -500, 500) # avoid overflow runtime error as the return statement can reach large values
+  return (1/(1+np.exp(-x)))
 
 class LogisticRegression():
 
